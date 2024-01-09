@@ -27,33 +27,12 @@ int coutRed(string s){
 	return 0;
 }
 
-// Do aktualizacji zastąp numerem wersji n++, aktualizuj tez wpis o wersji w repozytorium
-int localVersionBuild = 2; 
 
+// Pobierz nową wersję z serwera
 bool checkAndUpdateVersion() {
-    std::string url = "http://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/version";
-
-    system("cd ~/ && wget http://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/version -O ~/.studentmachine/version");
-
-    int serverVersionBuild = 0;
-    const char* homeDir = getenv("HOME");
-    std::ifstream file2(std::string(homeDir) + "/.studentmachine/.version");
-    file2 >> serverVersionBuild;
-    file2.close();
-
-    // Porównaj wersje i pobierz nową wersję, jeśli jest dostępna
-    if (serverVersionBuild > localVersionBuild) {
-       // Pobierz nową wersję z serwera
-    	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin && chmod +x /bin/studentmachine");
-
-       	coutGreen("\n App was updated - please restart\n");
+	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin && chmod +x /bin/studentmachine");
+	coutGreen("\n App was updated - please restart\n");    
 	return true;
-    } else {
-       	coutGreen("\n This app is in the actual version\n");
-	return false;
-    }
-    
-    return false;
 }
 
 //zapis do pliku
