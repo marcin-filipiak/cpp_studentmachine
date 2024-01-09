@@ -7,14 +7,28 @@
 
 #include <sstream> 
 
+// Kolory tekstowe w sekwencjach ucieczki ANSI
+#define GREEN_TEXT "\033[1;32m"
+#define RED_TEXT "\033[1;31m"
+#define RESET_TEXT "\033[0m"
+
 using namespace std;
 
 string githublogin;
 string githubmail;
 
-// Do aktualizacji zastąp numerem wersji n++, aktualizuj tez wpis o wersji w repozytorium
-int localVersionBuild = 1; 
+int coutGreen(string s){
+	cout << GREEN_TEXT << s << RESET_TEXT;
+	return 0;
+}
 
+int coutRed(string s){
+	cout << RED_TEXT << s << RESET_TEXT;
+	return 0;
+}
+
+// Do aktualizacji zastąp numerem wersji n++, aktualizuj tez wpis o wersji w repozytorium
+int localVersionBuild = 2; 
 
 bool checkAndUpdateVersion() {
     std::string url = "http://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/version";
@@ -32,10 +46,10 @@ bool checkAndUpdateVersion() {
        // Pobierz nową wersję z serwera
     	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin && chmod +x /bin/studentmachine");
 
-       	std::cout << "\n App was updated - please restart\n";
+       	coutGreen("\n App was updated - please restart\n");
 	return true;
     } else {
-       	std::cout << "\n This app is in the actual version\n";
+       	coutGreen("\n This app is in the actual version\n");
 	return false;
     }
     
@@ -62,7 +76,7 @@ std::string executeCommand(const char* command) {
 
     FILE* pipe = popen(command, "r");
     if (!pipe) {
-        std::cerr << "\n Something gone wrong with command :-/" << std::endl;
+        coutRed("\n Something gone wrong with command :-/\n");
         return "";
     }
 
@@ -228,6 +242,7 @@ int main(int argc, char* argv[])
 
         //------------system update
         if (parm == "update"){
+	    system("cd ~ && mkdir .studentmachine");
             checkAndUpdateVersion();
 	}
 
@@ -244,7 +259,7 @@ int main(int argc, char* argv[])
 	   system("cd ~ && mkdir .studentmachine");
 
             
-            cout << "What about github? [u]se / [t]hanks / [r]egister\n";
+            coutGreen("What about github? [u]se / [t]hanks / [r]egister\n");
             char menu;
             cin >> menu;
             //mamy i bedziemy uzywac gita
@@ -310,7 +325,7 @@ int main(int argc, char* argv[])
                 //zapis konfiga
                 saveconfig();
                 
-                cout << "\n\n Now your move, config everything on github.com:";
+                coutRed("\n\n Now your move, config everything on github.com:");
                 cout << "\n - make private repo: \"student_projects\"";
                 cout << "\n - add the key to git from:  http://api.noweenergie.org/application/StudentMachine/keyring/";
                 cout << "\n while everything is ready say [y]es \n";
@@ -331,7 +346,7 @@ int main(int argc, char* argv[])
                 
                 initworkspace();
 
-                cout << "\nOk done, but I dont save your work...\n";
+                coutGreen("\nOk done, but I dont save your work...\n");
             }
         }
 
@@ -357,7 +372,7 @@ int main(int argc, char* argv[])
                 int result = system(command);
             }
             else {
-                cout << "Whops! I havent your github login... :-O\n";
+                coutRed("Whops! I havent your github login... :-O\n");
             }
         }
 
@@ -384,7 +399,7 @@ int main(int argc, char* argv[])
 
                 // Sprawdzenie wyniku
                 if (result == 0) {
-                    cout << "\n Iam saving your work on github - Bye! :-) \n";
+                    coutGreen("\n Iam saving your work on github - Bye! :-) \n");
                     
                     string s;
                     //wyczyszczenie kluczy
@@ -397,13 +412,13 @@ int main(int argc, char* argv[])
                     system("sudo poweroff");
                 }
                 else {
-                    cout << "\n Now nothing to post on github - Bye! \n";
+                    coutGreen("\n Now nothing to post on github - Bye! \n");
                     //wylaczenie maszyny
                     system("sudo poweroff");
                 }
             }
             else {
-                cout << "Bye! But this time with no github. I am sure that you saved own work.\n";
+                coutGreen("Bye! But this time with no github. I am sure that you saved own work.\n");
             }
         }
 
