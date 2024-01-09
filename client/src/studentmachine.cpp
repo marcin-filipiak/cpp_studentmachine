@@ -5,10 +5,42 @@
 #include <cstdlib>  // Dla funkcji system
 #include <string.h> // stringi zawsze spoko
 
+#include <sstream> 
+
 using namespace std;
 
 string githublogin;
 string githubmail;
+
+// Do aktualizacji zastąp numerem wersji n++, aktualizuj tez wpis o wersji w repozytorium
+int localVersionBuild = 1; 
+
+
+bool checkAndUpdateVersion() {
+    std::string url = "http://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/version";
+
+    system("cd ~/ && wget http://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/version -O ~/.studentmachine/version");
+
+    int serverVersionBuild = 0;
+    const char* homeDir = getenv("HOME");
+    std::ifstream file2(std::string(homeDir) + "/.studentmachine/.version");
+    file2 >> serverVersionBuild;
+    file2.close();
+
+    // Porównaj wersje i pobierz nową wersję, jeśli jest dostępna
+    if (serverVersionBuild > localVersionBuild) {
+       // Pobierz nową wersję z serwera
+    	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin && chmod +x /bin/studentmachine");
+
+       	std::cout << "\n App was updated - please restart\n";
+	return true;
+    } else {
+       	std::cout << "\n This app is in the actual version\n";
+	return false;
+    }
+    
+    return false;
+}
 
 //zapis do pliku
 int savetofile(string data, string f){
@@ -54,11 +86,13 @@ bool isSSHPIDSet() {
 
 //zapis konfiguracji do plikow
 int saveconfig(){
-    std::ofstream outputFile("~/.githublogin");
+    const char* homeDir = getenv("HOME");
+
+    std::ofstream outputFile(std::string(homeDir) + "/.studentmachine/githublogin");
     outputFile << githublogin;
     outputFile.close();
 
-    std::ofstream outputFile2("~/.githubmail");
+    std::ofstream outputFile2(std::string(homeDir) + "/.studentmachine/githubmail");
     outputFile2 << githubmail;
     outputFile2.close();
     return 0;
@@ -66,11 +100,13 @@ int saveconfig(){
 
 //wczytanie konfiguracji z plikow
 int loadconfig(){
-    std::ifstream file("~/.githublogin");
+    const char* homeDir = getenv("HOME");
+
+    std::ifstream file(std::string(homeDir) + "/.studentmachine/githublogin");
     std::getline(file, githublogin);
     file.close();
 
-    std::ifstream file2("~/.githubmail");
+    std::ifstream file2(std::string(homeDir) + "/.studentmachine/githubmail");
     std::getline(file2, githubmail);
     file2.close();
 
@@ -164,8 +200,9 @@ int initworkspace(){
 
 int main(int argc, char* argv[])
 {
+
     cout << "\n\n STUDENT MACHINE";
-    cout << "\n version: blue bubble";
+    cout << "\n version: yellow bubble";
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
             cout << "\nI need parameters to run.\n";
@@ -174,6 +211,8 @@ int main(int argc, char* argv[])
             cout << " systemup\n";
             cout << " savework\n";
             cout << " systemdown\n";
+            cout << " update\n";
+            cout << " templates\n";
             cout << "\n\n";
             return 0;
     }
@@ -187,13 +226,22 @@ int main(int argc, char* argv[])
             system("sudo apt install -y g++ nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
         }
 
+        //------------system update
+        if (parm == "update"){
+            checkAndUpdateVersion();
+	}
+
         //------------system start and login
         if (parm == "systemup"){
             //wyczyszczenie projektow ucznia
             system("rm -rf ~/student_projects");
 
             //czyszczenie historii systemu
-            system("rm .bash_history");
+            system("rm ~/.bash_history");
+
+	   //czyszczenie ustawien usera
+	   system("rm -r ~/.studentmachine");
+	   system("cd ~ && mkdir .studentmachine");
 
             
             cout << "What about github? [u]se / [t]hanks / [r]egister\n";
@@ -287,6 +335,11 @@ int main(int argc, char* argv[])
             }
         }
 
+        //------------aktualizacja temlejtek
+        if (parm == "templates"){
+		initworkspace();
+	}
+
         //------------zapis pracy do repo
         if (parm == "savework"){
             //wczytanie loginu 
@@ -300,7 +353,7 @@ int main(int argc, char* argv[])
                 setenv("SSH_AUTH_SOCK", buffer2.c_str(), 1);
 
                 //wyslanie pracy do repozytorium
-                const char* command = "cd ~/student_projects && git add . && git commit -m \"wyslanie pracy\" && git push";
+                const char* command = "cd ~/student_projects && git add . && git commit -m \"studentmachine send\" && git push";
                 int result = system(command);
             }
             else {
