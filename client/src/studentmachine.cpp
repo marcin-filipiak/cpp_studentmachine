@@ -30,7 +30,9 @@ int coutRed(string s){
 
 // Pobierz nową wersję z serwera
 bool checkAndUpdateVersion() {
-	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin && chmod +x /bin/studentmachine");
+        system("sudo rm /bin/studentmachine*");
+	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin");
+	system("sudo chmod +x /bin/studentmachine");
 	coutGreen("\n App was updated - please restart\n");    
 	return true;
 }
