@@ -197,7 +197,7 @@ int main(int argc, char* argv[])
 {
 
     cout << "\n\n STUDENT MACHINE";
-    cout << "\n version: orange bubble";
+    cout << "\n version: big bubble";
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
             cout << "\nI need parameters to run.\n";
