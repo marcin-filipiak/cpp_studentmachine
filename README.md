@@ -1,3 +1,6 @@
+https://drive.google.com/file/d/1kQPPUT5lo1S_oK7gWTb-xE0PS5jir5Pq/view?usp=drive_link
+
+http://api.noweenergie.org/application/StudentMachine/keyring/
 
 The "STUDENT MACHINE" program is a tool written in C++ that provides a simple interface for users to manage a programming project on GitHub. Here's an overview of the program's functionality from the user's perspective:
 
