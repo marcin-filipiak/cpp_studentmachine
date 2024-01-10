@@ -33,13 +33,15 @@ This option restores the system to its initial state. In this process, the progr
 ## Parameter: savework
 This option allows users to save their work to the GitHub repository. The program checks if the user has a GitHub login and SSH keys saved. It then automatically performs a commit and push to the repository.
 
-# Parameter: systemdown
+## Parameter: systemdown
 Upon selecting this option, the program again performs the operation of saving work to the repository (similar to the "Savework" option). It then removes the private keys, securing access to the repository after shutting down the system. After all operations, the program shuts down the machine.
 
 The "STUDENT MACHINE" program aims to simplify working on a programming project on GitHub by automating the setup of the development environment, registering SSH keys, managing the workspace, and conveniently saving changes to the repository.
 
 # LINKS
 
+Virtual Machine for VirtualBox 7.0, Ubuntu with integrated StudentMachine
 https://drive.google.com/file/d/1skiiDTzoESxlegl_sN3R9fHocykbgLUZ/view?usp=sharing
 
+Official keyring server for StudentMachine
 http://api.noweenergie.org/application/StudentMachine/keyring/
