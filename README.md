@@ -41,7 +41,7 @@ The "STUDENT MACHINE" program aims to simplify working on a programming project 
 # LINKS
 
 Virtual Machine for VirtualBox 7.0, Ubuntu with integrated StudentMachine
-https://drive.google.com/file/d/1skiiDTzoESxlegl_sN3R9fHocykbgLUZ/view?usp=sharing
+[https://drive.google.com/file/d/1skiiDTzoESxlegl_sN3R9fHocykbgLUZ/view?usp=sharing](https://drive.google.com/drive/folders/1_Ga-sYiMOjj9J3WJQ29XvzGPdbE1G4Pw?usp=sharing)
 
 Official keyring server for StudentMachine
 http://api.noweenergie.org/application/StudentMachine/keyring/
