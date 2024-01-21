@@ -156,12 +156,6 @@ int keyregister(){
         s = "ssh-add ~/.ssh/"+githublogin;
         system(s.c_str());
 
-        //std::ofstream outputFile("/home/uczen/agent.sh");
-        //outputFile << "#!/bin/sh\neval \"$(ssh-agent -s)\" && ssh-add /home/uczen/.ssh/"+githublogin+"\ngit clone git@github.com:"+githublogin+"/student_projects.git\n";
-        //outputFile.close();
-        //s = "chmod +x /home/uczen/agent.sh && sudo -u uczen ./home/uczen/agent.sh";
-        //system(s.c_str());
-
         return 0;
 }
 
@@ -171,7 +165,7 @@ int initworkspace(){
     cout << "\n Iam downloading templates\n";
     //pobranie szablonow i instrukcji
     system("cd ~ && wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar");
-    system("tar -xvf student_projects.tar");
+    system("tar -xvf ~/student_projects.tar");
     
     cout << "\n Now script to configure workspace\n";
 
