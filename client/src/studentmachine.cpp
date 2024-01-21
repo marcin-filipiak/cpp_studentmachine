@@ -33,7 +33,7 @@ bool checkAndUpdateVersion() {
         system("sudo rm /bin/studentmachine*");
 	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin");
 	system("sudo chmod +x /bin/studentmachine");
-	coutGreen("\n App was updated - please restart\n");    
+	coutGreen("\n App StudentMachine was updated\n");    
 	return true;
 }
 
@@ -170,7 +170,7 @@ int keyregister(){
 int initworkspace(){
     cout << "\n Iam downloading templates\n";
     //pobranie szablonow i instrukcji
-    system("cd ~/ && wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar");
+    system("cd ~ && wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar");
     system("tar -xvf student_projects.tar");
     
     cout << "\n Now script to configure workspace\n";
@@ -219,6 +219,8 @@ int main(int argc, char* argv[])
         //------------first start and system setup
         if (parm == "install"){
             system("sudo apt install -y g++ nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
+	    checkAndUpdateVersion();
+	    //TODO: konfiguracja sciezki apache i mysql do folderu student_projects
         }
 
         //------------system update
@@ -246,7 +248,7 @@ int main(int argc, char* argv[])
             //mamy i bedziemy uzywac gita
             if (menu == 'u'){
                 
-                cout << "Guthub login:\n";
+                cout << "Github login:\n";
                 cin >> githublogin;
 
                 cout << "Github email:\n";
