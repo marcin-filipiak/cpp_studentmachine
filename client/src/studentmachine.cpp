@@ -164,7 +164,13 @@ int keyregister(){
 int initworkspace(){
     cout << "\n Iam downloading templates\n";
     //pobranie szablonow i instrukcji
-    system("wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar -P ~/");
+
+    // Pobierz nazwę aktualnie zalogowanego użytkownika
+    std::string username = getenv("USER");
+    // Wykonaj polecenie wget
+    std::string command = "wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar -P /home/" + username;
+    system(command.c_str());
+
     system("tar -xvf ~/student_projects.tar");
     
     cout << "\n Now script to configure workspace\n";
