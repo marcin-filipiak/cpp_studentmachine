@@ -164,7 +164,7 @@ int keyregister(){
 int initworkspace(){
     cout << "\n Iam downloading templates\n";
     //pobranie szablonow i instrukcji
-    system("cd ~ && wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar");
+    system("wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar -P ~/");
     system("tar -xvf ~/student_projects.tar");
     
     cout << "\n Now script to configure workspace\n";
