@@ -354,7 +354,7 @@ int main(int argc, char* argv[])
 			cout << "\n Cleaning after work...\n";
 			//wyczyszczenie plikow roboczych
 			system("rm ~/student_projects/run.sh");
-			system(("rm ~/student_proects/"+ename+".tar").c_str());	
+			system(("rm ~/student_projects/"+ename+".tar").c_str());	
 
 			coutGreen("Exercise is ready!\n");
 		}
