@@ -18,15 +18,21 @@ For example, to install the required tools, you would run:
 `./studentmachine install`
 
 ### Installation and System Setup
-Command: install
+
+Command: `install`
+
 Functionality: Installs necessary software packages, updates the application to the latest version, and potentially configures Apache and MySQL paths.
 
 ### Version Checking and Updating
-Command: update
+
+Command: `update`
+
 Functionality: Checks and updates the application to the latest version from a specified GitHub repository.
 
 ### System Initialization and Configuration
-Command: systemup
+
+Command: `systemup`
+
 Functionality:
 - Clears existing student projects and system history.
 - Optionally registers GitHub credentials (login and email).
@@ -35,22 +41,30 @@ Functionality:
 - Clones the GitHub repository for student projects.
 
 ### Saving Work to Repository
-Command: savework
+
+Command: `savework`
+
 Functionality:
 - Loads GitHub login and email from configuration files.
 - Commits changes to the local Git repository in student_projects.
 - Pushes changes to the GitHub repository.
 
 ### Template Download and Configuration
-Command: templates
+
+Command: `templates`
+
 Functionality: Downloads project templates, runs a script to configure the workspace according to the template, and creates symbolic links.
 
 ### Exercise Download and Configuration
-Command: exercise [exercise_name]
+
+Command: `exercise [exercise_name]`
+
 Functionality: Downloads a specific exercise, extracts it, runs a script to configure the exercise, and cleans up after the configuration.
 
 ### System Shutdown
-Command: systemdown
+
+Command: `systemdown`
+
 Functionality:
 - Loads GitHub login and email from configuration files.
 - Commits changes to the local Git repository in student_projects.
