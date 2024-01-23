@@ -195,7 +195,7 @@ int main(int argc, char* argv[])
     cout << "\n version: exrc bubble";
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
-            cout << "\nI need parameters to run.\n";
+            cout << "\nI need command to run.\n";
             cout << "Try with:\n";
             cout << " install\n";
             cout << " systemup\n";
