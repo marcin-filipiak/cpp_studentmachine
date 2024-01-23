@@ -198,12 +198,12 @@ int main(int argc, char* argv[])
             cout << "\nI need command to run.\n";
             cout << "Try with:\n";
             cout << " install\n";
-            cout << " systemup\n";
+	    cout << " update\n";            
+	    cout << " systemup\n";
             cout << " savework\n";
-            cout << " systemdown\n";
-            cout << " update\n";
             cout << " templates\n";
 	    cout << " exercise [exercise_name]\n";
+            cout << " systemdown\n";
             cout << "\n\n";
             return 0;
     }
