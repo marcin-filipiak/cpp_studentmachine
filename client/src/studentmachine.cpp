@@ -192,7 +192,7 @@ int main(int argc, char* argv[])
 {
 
     cout << "\n\n STUDENT MACHINE";
-    cout << "\n version: gtest bubble";
+    cout << "\n version: exrc bubble";
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
             cout << "\nI need parameters to run.\n";
