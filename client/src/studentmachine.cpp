@@ -192,7 +192,7 @@ int main(int argc, char* argv[])
 {
 
     cout << "\n\n STUDENT MACHINE";
-    cout << "\n version: sample bubble";
+    cout << "\n version: gtest bubble";
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
             cout << "\nI need parameters to run.\n";
@@ -213,7 +213,7 @@ int main(int argc, char* argv[])
 
         //------------first start and system setup
         if (parm == "install"){
-            system("sudo apt install -y g++ nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
+            system("sudo apt install -y g++ libgtest-dev nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
 	    checkAndUpdateVersion();
 	    //TODO: konfiguracja sciezki apache i mysql do folderu student_projects
         }
@@ -385,12 +385,19 @@ int main(int argc, char* argv[])
                     system(s.c_str());
                     s = "rm ~/.ssh/"+githublogin+".pub";
                     system(s.c_str());
+		
+		    //wyczyszczenie projektow ucznia
+	            system("rm -rf ~/student_projects");
 
                     //wylaczenie maszyny
                     system("sudo poweroff");
                 }
                 else {
                     coutGreen("\n Now nothing to post on github - Bye! \n");
+
+		    //wyczyszczenie projektow ucznia
+            	    system("rm -rf ~/student_projects");
+
                     //wylaczenie maszyny
                     system("sudo poweroff");
                 }
