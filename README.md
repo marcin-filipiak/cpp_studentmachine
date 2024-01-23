@@ -1,47 +1,113 @@
 # STUDENT MACHINE
 
-The "STUDENT MACHINE" program is a tool written in C++ that provides a simple interface for users to manage a programming project on GitHub. Here's an overview of the program's functionality from the user's perspective:
+The "STUDENT MACHINE" program is a tool written in C++ that provides a simple interface for users to manage a programming project on GitHub. Student need to work own github account and repository "student_projects". 
+
+Here's an overview of the program's functionality from the user's perspective:
 
 To run the program, follow these steps:
 * Open a terminal.
 * Navigate to the directory where the studentmachine executable is located.
 * Run the program by typing the following command and providing a parameter:
 
-`./studentmachine [parameter]`
+`./studentmachine [command]`
 
-Replace [parameter] with one of the following options:
-* install: Installs the necessary development tools and services.
-* systemup: Restores the system to its initial state, allowing interaction with GitHub.
-* savework: Saves your work to the GitHub repository.
-* systemdown: Performs the necessary operations to save work and shuts down the system.
+Replace [command] with one of the command.
 
 For example, to install the required tools, you would run:
 
 `./studentmachine install`
 
-Make sure to follow the on-screen prompts and provide any required information during the execution of the program.
+### Installation and System Setup
+Command: install
+Functionality: Installs necessary software packages, updates the application to the latest version, and potentially configures Apache and MySQL paths.
 
-## Parameter: install
-Choosing this option installs a set of programming tools on the system, including the g++ compiler, nano and vim editors, Git, Apache, MariaDB, and PHPMyAdmin. The installation is a one-time setup to prepare the environment for work.
+### Version Checking and Updating
+Command: update
+Functionality: Checks and updates the application to the latest version from a specified GitHub repository.
 
-## Parameter: systemup
-This option restores the system to its initial state. In this process, the program removes student projects and clears the system history. Users are then prompted for interaction with GitHub, with three options:
-* use (u): Users enter their GitHub login and email. Private and public keys are retrieved from the server and registered in the system. The program configures Git and saves the configuration to files.
-* thanks (t): The program initializes the workspace and creates a symbolic link to the Apache folder. No GitHub login or SSH key registration is required.
-* register (r): Users enter their GitHub login and email. Private and public keys are generated, sent to the server, and registered in the system. The program registers the keys in the system, configures Git, saves the configuration to files, and instructs users to set up the repository on GitHub and enter the appropriate response ('y').
+### System Initialization and Configuration
+Command: systemup
+Functionality:
+- Clears existing student projects and system history.
+- Optionally registers GitHub credentials (login and email).
+- Downloads and registers SSH keys from a specified keyring.
+- Configures Git with the provided GitHub login and email.
+- Clones the GitHub repository for student projects.
 
-## Parameter: savework
-This option allows users to save their work to the GitHub repository. The program checks if the user has a GitHub login and SSH keys saved. It then automatically performs a commit and push to the repository.
+### Template Download and Configuration
+Command: templates
+Functionality: Downloads project templates, runs a script to configure the workspace according to the template, and creates symbolic links.
 
-## Parameter: systemdown
-Upon selecting this option, the program again performs the operation of saving work to the repository (similar to the "Savework" option). It then removes the private keys, securing access to the repository after shutting down the system. After all operations, the program shuts down the machine.
+### Exercise Download and Configuration
+Command: exercise [exercise_name]
+Functionality: Downloads a specific exercise, extracts it, runs a script to configure the exercise, and cleans up after the configuration.
 
-The "STUDENT MACHINE" program aims to simplify working on a programming project on GitHub by automating the setup of the development environment, registering SSH keys, managing the workspace, and conveniently saving changes to the repository.
+### Saving Work to Repository
+Command: savework
+Functionality:
+- Loads GitHub login and email from configur1. Installation and System Setup
+
+    Command: install
+    Functionality: Installs necessary software packages, updates the application to the latest version, and potentially configures Apache and MySQL paths.
+
+2. Version Checking and Updating
+
+    Command: update
+    Functionality: Checks and updates the application to the latest version from a specified GitHub repository.
+
+3. System Initialization and Configuration
+
+    Command: systemup
+    Functionality:
+        Clears existing student projects and system history.
+        Optionally registers GitHub credentials (login and email).
+        Downloads and registers SSH keys from keyring server.
+        Configures Git with the provided GitHub login and email.
+        Clones the GitHub repository for student_projects.
+
+4. Template Download and Configuration
+
+    Command: templates
+    Functionality: Downloads project templates, runs a script to configure the workspace according to the template, and creates symbolic links.
+
+5. Exercise Download and Configuration
+
+    Command: exercise [exercise_name]
+    Functionality: Downloads a specific exercise, extracts it, runs a script to configure the exercise, and cleans up after the configuration.
+
+6. Saving Work to Repository
+
+    Command: savework
+    Functionality:
+        Loads GitHub login and email from configuration files.
+        Commits changes to the local Git repository in student_projects.
+        Pushes changes to the GitHub repository.
+
+7. System Shutdown
+
+    Command: systemdown
+    Functionality:
+        Loads GitHub login and email from configuration files.
+        Commits changes to the local Git repository in student_projects.
+        Optionally pushes changes to the GitHub repository.
+        Cleans up SSH keys.
+        Shuts down the machine.ation files.
+- Commits changes to the local Git repository in student_projects.
+- Pushes changes to the GitHub repository.
+
+### System Shutdown
+Command: systemdown
+Functionality:
+- Loads GitHub login and email from configuration files.
+- Commits changes to the local Git repository in student projects.
+- Optionally pushes changes to the GitHub repository.
+- Cleans up SSH keys.
+- Shuts down the machine.
 
 # LINKS
 
 Virtual Machine for VirtualBox 7.0, Ubuntu with integrated StudentMachine
 [https://drive.google.com/file/d/1skiiDTzoESxlegl_sN3R9fHocykbgLUZ/view?usp=sharing](https://drive.google.com/drive/folders/1_Ga-sYiMOjj9J3WJQ29XvzGPdbE1G4Pw?usp=sharing)
 
-Official keyring server for StudentMachine
+Official keyring server for StudentMachine where you can find your public key (need to import in Github)
 http://api.noweenergie.org/application/StudentMachine/keyring/
