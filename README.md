@@ -1,6 +1,8 @@
 # STUDENT MACHINE
 
-The "STUDENT MACHINE" program is a tool written in C++ that provides a simple interface for users to manage a programming project on GitHub. Here's an overview of the program's functionality from the user's perspective:
+The "STUDENT MACHINE" program is a tool written in C++ that provides a simple interface for users to manage a programming project on GitHub. Student need to work own github account and repository "student_projects". 
+
+Here's an overview of the program's functionality from the user's perspective:
 
 To run the program, follow these steps:
 * Open a terminal.
