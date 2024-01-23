@@ -203,6 +203,7 @@ int main(int argc, char* argv[])
             cout << " systemdown\n";
             cout << " update\n";
             cout << " templates\n";
+	    cout << " exercise [exercise_name]\n";
             cout << "\n\n";
             return 0;
     }
@@ -213,7 +214,7 @@ int main(int argc, char* argv[])
 
         //------------first start and system setup
         if (parm == "install"){
-            system("sudo apt install -y g++ libgtest-dev nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
+            system("sudo apt install -y g++ nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
 	    checkAndUpdateVersion();
 	    //TODO: konfiguracja sciezki apache i mysql do folderu student_projects
         }
@@ -331,6 +332,35 @@ int main(int argc, char* argv[])
         //------------aktualizacja temlejtek
         if (parm == "templates"){
 		initworkspace();
+	}
+
+	//------------pobranie cwiczenia
+	if (parm == "exercise"){
+		string ename = argv[2];
+		cout << "\n Iam downloading exercise: "<<ename<<"\n";
+		//pobranie cwiczenia
+		int wgetResult = system(("wget -nc http://api.noweenergie.org/application/StudentMachine/files/"+ename+".tar -P ~/student_projects").c_str());
+		
+		if (wgetResult == 0){
+
+			system(("tar -xvf ~/student_projects/"+ename+".tar -C ~/student_projects").c_str());
+			    
+			cout << "\n Now script to configure exercise\n";
+
+			system("chmod +x ~/student_projects/run.sh");
+			//uruchomienie skryptu konfigurujacego
+			system("sh ~/student_projects/run.sh");
+
+			cout << "\n Cleaning after work...\n";
+			//wyczyszczenie plikow roboczych
+			system("rm ~/student_projects/run.sh");
+			system(("rm ~/student_proects/"+ename+".tar").c_str());	
+
+			coutGreen("Exercise is ready!\n");
+		}
+		else{
+			coutRed("Ops! I cant find that exercise.\n");
+		}
 	}
 
         //------------zapis pracy do repo

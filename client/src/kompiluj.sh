@@ -1,5 +1,6 @@
 #!/bin/sh
-
+rm ../build/studentmachine
+clear
 echo "----Kompilacja programu----"
 g++ -o ../build/studentmachine studentmachine.cpp
 echo "---Kompilacja ukonczona----"
