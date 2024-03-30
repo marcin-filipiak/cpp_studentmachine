@@ -81,3 +81,6 @@ Virtual Machine for VirtualBox 7.0, Ubuntu with integrated StudentMachine
 
 Official keyring server for StudentMachine where you can find your public key (need to import in Github)
 http://api.noweenergie.org/application/StudentMachine/keyring/
+
+Fork for NixOS:
+https://github.com/theKapcioszek/cpp_studentmachine-nix
