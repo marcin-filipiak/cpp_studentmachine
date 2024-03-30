@@ -269,7 +269,7 @@ int main(int argc, char* argv[])
             
             coutGreen("What about github? [u]se / [t]hanks / [r]egister\n");
             char menu;
-            cin >> menu;
+            menu = getch();
             //mamy i bedziemy uzywac gita
             if (menu == 'u'){
                 
