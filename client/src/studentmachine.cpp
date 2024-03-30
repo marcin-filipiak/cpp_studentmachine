@@ -7,15 +7,42 @@
 
 #include <sstream> 
 
+#include <termios.h> //dla getch
+#include <unistd.h> //dla getch
+
 // Kolory tekstowe w sekwencjach ucieczki ANSI
 #define GREEN_TEXT "\033[1;32m"
 #define RED_TEXT "\033[1;31m"
 #define RESET_TEXT "\033[0m"
 
+
+#define VERSION "getch bubble"
+
 using namespace std;
 
 string githublogin;
 string githubmail;
+
+char getch() {
+    char buf = 0;
+    struct termios old = {0};
+    fflush(stdout);
+    if (tcgetattr(0, &old) < 0)
+        perror("tcsetattr()");
+    old.c_lflag &= ~ICANON;
+    old.c_lflag &= ~ECHO;
+    old.c_cc[VMIN] = 1;
+    old.c_cc[VTIME] = 0;
+    if (tcsetattr(0, TCSANOW, &old) < 0)
+        perror("tcsetattr ICANON");
+    if (read(0, &buf, 1) < 0)
+        perror("read()");
+    old.c_lflag |= ICANON;
+    old.c_lflag |= ECHO;
+    if (tcsetattr(0, TCSADRAIN, &old) < 0)
+        perror ("tcsetattr ~ICANON");
+    return (buf);
+}
 
 int coutGreen(string s){
 	cout << GREEN_TEXT << s << RESET_TEXT;
@@ -183,6 +210,9 @@ int initworkspace(){
     //podlinkowanie folderu apache
     system("sudo chmod 777 -R /var/www/html");
     system("sudo ln -s /var/www/html ~/student_projects/html");
+
+    //TODO: konfiguracja sciezki apache i mysql do folderu student_projects
+
     return 0;
 }
 
@@ -192,7 +222,7 @@ int main(int argc, char* argv[])
 {
 
     cout << "\n\n STUDENT MACHINE";
-    cout << "\n version: exrc bubble";
+    cout << "\n version: "<<VERSION;
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
             cout << "\nI need command to run.\n";
@@ -216,7 +246,6 @@ int main(int argc, char* argv[])
         if (parm == "install"){
             system("sudo apt install -y g++ nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
 	    checkAndUpdateVersion();
-	    //TODO: konfiguracja sciezki apache i mysql do folderu student_projects
         }
 
         //------------system update
@@ -271,7 +300,7 @@ int main(int argc, char* argv[])
                 system(s.c_str());
             }
 
-                //pierwszy raz do githuba z tego systemu - generujemy więc klucze
+            //pierwszy raz do githuba ze studentprojects - generujemy więc klucze
             if (menu == 'r') {
                 cout << "Github login:\n";
                 cin >> githublogin;
@@ -309,8 +338,8 @@ int main(int argc, char* argv[])
                 cout << "\n - add the key to git from:  http://api.noweenergie.org/application/StudentMachine/keyring/";
                 cout << "\n while everything is ready say [y]es \n";
                 char r;
-                cin >> r;
-                if (r=='y'){
+                r = getch();
+                if (r=='y' || r == 'Y' || r == '\n'){
                     //pobranie repo
                     s = "cd ~ && git clone git@github.com:"+githublogin+"/student_projects.git";
                     system(s.c_str());
@@ -400,10 +429,10 @@ int main(int argc, char* argv[])
                 setenv("SSH_AUTH_SOCK", buffer2.c_str(), 1);
 
                 //wyslanie pracy do repozytorium
-                const char* command = "cd ~/student_projects && git add . && git commit -m \"wyslanie pracy\" && git push";
+                const char* command = "cd ~/student_projects && git add . && git commit -m \"commit from StudentMachine\" && git push";
                 int result = system(command);
-
-                //todo: jak nic nie robil to nie robi sie push i wyskakuje whops
+		//TODO: co jak byly zmiany w repozytorium? trzeba zrobic obsluge pull
+                //TODO: jak nic nie robil to nie robi sie push i wyskakuje whops
 
                 // Sprawdzenie wyniku
                 if (result == 0) {
