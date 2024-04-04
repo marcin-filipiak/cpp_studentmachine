@@ -222,7 +222,7 @@ int main(int argc, char* argv[])
 {
 
     cout << "\n\n STUDENT MACHINE";
-    cout << "\n version: "<<VERSION;
+    cout << "\n version: " << VERSION;
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
             cout << "\nI need command to run.\n";
@@ -244,7 +244,7 @@ int main(int argc, char* argv[])
 
         //------------first start and system setup
         if (parm == "install"){
-            system("sudo apt install -y g++ nano vim git apache2 mariadb-server mariadb-client phpmyadmin");
+            system("sudo apt install -y g++ nano mc vim git apache2 mariadb-server mariadb-client phpmyadmin");
 	    checkAndUpdateVersion();
         }
 
@@ -304,8 +304,11 @@ int main(int argc, char* argv[])
             if (menu == 'r') {
                 cout << "Github login:\n";
                 cin >> githublogin;
-                cout << "Github email:\n";
-                cin >> githubmail;
+		
+		//TESTING: brak podawania emaila, zastosowanie domyślnego
+                //cout << "Github email:\n";
+                //cin >> githubmail;
+		githubmail = "student@student.machine";
                 
                 string s;
 
@@ -358,7 +361,7 @@ int main(int argc, char* argv[])
             }
         }
 
-        //------------aktualizacja temlejtek
+        //------------aktualizacja templejtek
         if (parm == "templates"){
 		initworkspace();
 	}
