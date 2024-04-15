@@ -16,7 +16,7 @@
 #define RESET_TEXT "\033[0m"
 
 
-#define VERSION "getch bubble"
+#define VERSION "nomail bubble"
 
 using namespace std;
 
@@ -276,8 +276,9 @@ int main(int argc, char* argv[])
                 cout << "Github login:\n";
                 cin >> githublogin;
 
-                cout << "Github email:\n";
-                cin >> githubmail;
+                //cout << "Github email:\n";
+                //cin >> githubmail;
+                githubmail = "student@student.machine";
 
                 //pobranie klucza prywatnego (-nc by nie nadpisywal jak jest)
                 string s = "cd ~/.ssh && wget -nc http://api.noweenergie.org/application/StudentMachine/keyring/"+githublogin; 
@@ -308,7 +309,7 @@ int main(int argc, char* argv[])
 		//TESTING: brak podawania emaila, zastosowanie domyślnego
                 //cout << "Github email:\n";
                 //cin >> githubmail;
-		githubmail = "student@student.machine";
+		        githubmail = "student@student.machine";
                 
                 string s;
 
