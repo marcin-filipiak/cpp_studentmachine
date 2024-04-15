@@ -57,7 +57,7 @@ int coutRed(string s){
 
 // Pobierz nową wersję z serwera
 bool checkAndUpdateVersion() {
-        system("sudo rm /bin/studentmachine*");
+    system("sudo rm /bin/studentmachine*");
 	system("sudo wget https://github.com/marcin-filipiak/cpp_studentmachine/raw/main/client/build/studentmachine -P /bin");
 	system("sudo chmod +x /bin/studentmachine");
 	coutGreen("\n App StudentMachine was updated\n");    
@@ -228,11 +228,11 @@ int main(int argc, char* argv[])
             cout << "\nI need command to run.\n";
             cout << "Try with:\n";
             cout << " install\n";
-	    cout << " update\n";            
-	    cout << " systemup\n";
+	        cout << " update\n";            
+	        cout << " systemup\n";
             cout << " savework\n";
             cout << " templates\n";
-	    cout << " exercise [exercise_name]\n";
+	        cout << " exercise [exercise_name]\n";
             cout << " systemdown\n";
             cout << "\n\n";
             return 0;
@@ -245,14 +245,15 @@ int main(int argc, char* argv[])
         //------------first start and system setup
         if (parm == "install"){
             system("sudo apt install -y g++ nano mc vim git apache2 mariadb-server mariadb-client phpmyadmin");
-	    checkAndUpdateVersion();
+	        checkAndUpdateVersion();
         }
 
         //------------system update
         if (parm == "update"){
-	    system("cd ~ && mkdir .studentmachine");
+            system("rm -rf .studentmachine");
+	        system("cd ~ && mkdir .studentmachine");
             checkAndUpdateVersion();
-	}
+	    }
 
         //------------system start and login
         if (parm == "systemup"){
@@ -262,9 +263,9 @@ int main(int argc, char* argv[])
             //czyszczenie historii systemu
             system("rm ~/.bash_history");
 
-	   //czyszczenie ustawien usera
-	   system("rm -r ~/.studentmachine");
-	   system("cd ~ && mkdir .studentmachine");
+	        //czyszczenie ustawien usera
+	        system("rm -r ~/.studentmachine");
+	        system("cd ~ && mkdir .studentmachine");
 
             
             coutGreen("What about github? [u]se / [t]hanks / [r]egister\n");
@@ -306,7 +307,7 @@ int main(int argc, char* argv[])
                 cout << "Github login:\n";
                 cin >> githublogin;
 		
-		//TESTING: brak podawania emaila, zastosowanie domyślnego
+		        //TESTING: brak podawania emaila, zastosowanie domyślnego
                 //cout << "Github email:\n";
                 //cin >> githubmail;
 		        githubmail = "student@student.machine";
@@ -435,7 +436,7 @@ int main(int argc, char* argv[])
                 //wyslanie pracy do repozytorium
                 const char* command = "cd ~/student_projects && git add . && git commit -m \"commit from StudentMachine\" && git push";
                 int result = system(command);
-		//TODO: co jak byly zmiany w repozytorium? trzeba zrobic obsluge pull
+		        //TODO: co jak byly zmiany w repozytorium? trzeba zrobic obsluge pull
                 //TODO: jak nic nie robil to nie robi sie push i wyskakuje whops
 
                 // Sprawdzenie wyniku
@@ -449,8 +450,8 @@ int main(int argc, char* argv[])
                     s = "rm ~/.ssh/"+githublogin+".pub";
                     system(s.c_str());
 		
-		    //wyczyszczenie projektow ucznia
-	            system("rm -rf ~/student_projects");
+		            //wyczyszczenie projektow ucznia
+	                system("rm -rf ~/student_projects");
 
                     //wylaczenie maszyny
                     system("sudo poweroff");
@@ -458,7 +459,7 @@ int main(int argc, char* argv[])
                 else {
                     coutGreen("\n Now nothing to post on github - Bye! \n");
 
-		    //wyczyszczenie projektow ucznia
+		            //wyczyszczenie projektow ucznia
             	    system("rm -rf ~/student_projects");
 
                     //wylaczenie maszyny
