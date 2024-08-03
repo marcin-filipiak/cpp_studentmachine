@@ -126,7 +126,7 @@
 
     <div class="container">
         <form action="" method="post">
-            <h1>Check your public key</h1>
+            <h1>KeyRing for Studentmachine</h1>
             <label for="filename">Your login on GitHub:</label>
             <input type="text" id="filename" name="filename" required>
             <button type="submit">Show</button>
