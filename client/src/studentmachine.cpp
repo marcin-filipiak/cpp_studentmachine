@@ -311,10 +311,10 @@ int main(int argc, char* argv[])
                     //jesli istnieja to kopiowanie z nadpisaniem plikow konfiguracyjnych systemu operacyjnego
                     s = "mkdir -p ~/.config && mv -f ~/student_projects/os_config/config/* ~/.config/ 2>/dev/null && mv -f ~/student_projects/os_config/config/.* ~/.config/ 2>/dev/null";
                     system(s.c_str());
-                    cout<<"\nyour system now is personalized :-)";
+                    cout<<"\nyour system now is personalized :-)\n";
                 }
                 else {
-                    cout<<"\nyour system isnt personalized";
+                    cout<<"\nyour system isnt personalized\n";
                 }
             }
 
