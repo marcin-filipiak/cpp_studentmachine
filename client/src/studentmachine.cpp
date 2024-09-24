@@ -206,12 +206,13 @@ int initworkspace(){
     system("rm ~/student_projects/run.sh");
     system("rm ~/student_projects.tar");
 
-    cout << "\n And linking workspace for Apache lovers\n";
+    //TODO: podlaczenie folderu apache i mysql do repozytorium
+    //cout << "\n And linking workspace for Apache lovers\n";
     //podlinkowanie folderu apache
-    system("sudo chmod 777 -R /var/www/html");
-    system("sudo ln -s /var/www/html ~/student_projects/html");
+    //system("sudo chmod 777 -R /var/www/html");
+    //system("sudo ln -s /var/www/html ~/student_projects/html");
 
-    //TODO: konfiguracja sciezki apache i mysql do folderu student_projects
+    //TODO: alternatywnie jesli nie podlaczenie folderow to konfiguracja sciezki apache i mysql do folderu student_projects
 
     return 0;
 }
@@ -299,6 +300,10 @@ int main(int argc, char* argv[])
 
                 //pobranie repo
                 s = "cd ~ && git clone git@github.com:"+githublogin+"/student_projects.git";
+                system(s.c_str());
+                
+                //jesli istnieja to kopiowanie z nadpisaniem plikow konfiguracyjnych systemu operacyjnego
+                s = "mv -f ~/student_projects/os_config/config/* ~/.config/ && mv -f ~/student_projects/os_config/config/.* ~/.config/ 2>/dev/null";
                 system(s.c_str());
             }
 
@@ -426,6 +431,10 @@ int main(int argc, char* argv[])
 
             //jesli mamy login do githuba
             if (githublogin !=""){
+            
+                //przygotowanie plikow konfigurujacych system operacyjny do wyslania na githuba
+                string s = "mkdir -p ~/student_projects/os_config/ && mv -f ~/.config/* ~/student_projects/os_config/config && mv -f ~/.config/.* ~/student_projects/os_config/config/ 2>/dev/null";
+                system(s.c_str());
 
                 string buffer = executeCommand("pgrep ssh-agent");
                 setenv("SSH_AGENT_PID", buffer.c_str(), 1);
