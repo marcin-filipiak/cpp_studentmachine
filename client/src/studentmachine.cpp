@@ -4,6 +4,7 @@
 #include <string>
 #include <cstdlib>  // Dla funkcji system
 #include <string.h> // stringi zawsze spoko
+#include <filesystem> //obsluga katalogow itp
 
 #include <sstream> 
 
@@ -301,10 +302,20 @@ int main(int argc, char* argv[])
                 //pobranie repo
                 s = "cd ~ && git clone git@github.com:"+githublogin+"/student_projects.git";
                 system(s.c_str());
-                
-                //jesli istnieja to kopiowanie z nadpisaniem plikow konfiguracyjnych systemu operacyjnego
-                s = "mkdir -p ~/.config && mv -f ~/student_projects/os_config/config/* ~/.config/ 2>/dev/null && mv -f ~/student_projects/os_config/config/.* ~/.config/ 2>/dev/null";
-                system(s.c_str());
+            
+                ///konfiguracja systemu z githuba    
+                const std::string configDir = std::string(getenv("HOME")) + "/.config";
+                const std::string sourceDir = std::string(getenv("HOME")) + "/student_projects/os_config/config";
+                // Sprawdzanie, czy katalog os_config/config istnieje
+                if (std::filesystem::exists(sourceDir) && std::filesystem::is_directory(sourceDir)) {
+                    //jesli istnieja to kopiowanie z nadpisaniem plikow konfiguracyjnych systemu operacyjnego
+                    s = "mkdir -p ~/.config && mv -f ~/student_projects/os_config/config/* ~/.config/ 2>/dev/null && mv -f ~/student_projects/os_config/config/.* ~/.config/ 2>/dev/null";
+                    system(s.c_str());
+                    cout<<"\nyour system now is personalized :-)";
+                }
+                else {
+                    cout<<"\nyour system isnt personalized";
+                }
             }
 
             //pierwszy raz do githuba ze studentprojects - generujemy więc klucze
