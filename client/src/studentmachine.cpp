@@ -16,7 +16,7 @@
 #define RESET_TEXT "\033[0m"
 
 
-#define VERSION "nomail ossaver"
+#define VERSION "nomail saver"
 
 using namespace std;
 
@@ -251,8 +251,8 @@ int main(int argc, char* argv[])
 
         //------------system update
         if (parm == "update"){
-            system("rm -rf .studentmachine");
-	        system("cd ~ && mkdir .studentmachine");
+            system("rm -rf ~/.studentmachine");
+	        system("cd ~ && mkdir ~/.studentmachine");
             checkAndUpdateVersion();
 	    }
 
