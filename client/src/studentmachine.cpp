@@ -16,7 +16,7 @@
 #define RESET_TEXT "\033[0m"
 
 
-#define VERSION "nomail saver"
+#define VERSION "nomail saveros"
 
 using namespace std;
 
@@ -262,7 +262,7 @@ int main(int argc, char* argv[])
             system("rm -rf ~/student_projects");
 
             //czyszczenie historii systemu
-            system("rm ~/.bash_history");
+            system("rm -f ~/.bash_history");
 
 	        //czyszczenie ustawien usera
 	        system("rm -r ~/.studentmachine");
@@ -404,6 +404,11 @@ int main(int argc, char* argv[])
 
         //------------zapis pracy do repo
         if (parm == "savework"){
+        
+            //przygotowanie plikow konfigurujacych system operacyjny do wyslania na githuba
+            string s = "mkdir -p ~/student_projects/os_config/ && mv -f ~/.config/* ~/student_projects/os_config/config && mv -f ~/.config/.* ~/student_projects/os_config/config/ 2>/dev/null";
+            system(s.c_str());
+        
             //wczytanie loginu 
             loadconfig();
 
