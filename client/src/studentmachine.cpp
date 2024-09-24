@@ -16,7 +16,7 @@
 #define RESET_TEXT "\033[0m"
 
 
-#define VERSION "nomail bubble"
+#define VERSION "nomail ossaver"
 
 using namespace std;
 
