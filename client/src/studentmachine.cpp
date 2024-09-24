@@ -17,7 +17,7 @@
 #define RESET_TEXT "\033[0m"
 
 
-#define VERSION "nomail saveros"
+#define VERSION "nomail ossaver"
 
 using namespace std;
 
@@ -448,9 +448,9 @@ int main(int argc, char* argv[])
             //jesli mamy login do githuba
             if (githublogin !=""){
             
-                //przygotowanie plikow konfigurujacych system operacyjny do wyslania na githuba
-                string s = "mkdir -p ~/student_projects/os_config/ && mv -f ~/.config/* ~/student_projects/os_config/config && mv -f ~/.config/.* ~/student_projects/os_config/config/ 2>/dev/null";
-                system(s.c_str());
+            //przygotowanie plikow konfigurujacych system operacyjny do wyslania na githuba
+            string s = "mkdir -p ~/student_projects/os_config/ && mv -f ~/.config/* ~/student_projects/os_config/config && mv -f ~/.config/.* ~/student_projects/os_config/config/ 2>/dev/null";
+            system(s.c_str());
 
                 string buffer = executeCommand("pgrep ssh-agent");
                 setenv("SSH_AGENT_PID", buffer.c_str(), 1);
