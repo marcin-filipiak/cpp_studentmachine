@@ -223,7 +223,21 @@ int initworkspace(){
 int main(int argc, char* argv[])
 {
 
-    cout << "\n\n STUDENT MACHINE";
+    cout << "  _____      _______     _     _      _____       ______      _    _      _______   " << endl;
+    cout << " / ___ |    |__   __|   | |   | |    |  __ \\     |  ____|    | \\  | |    |__   __|  " << endl;
+    cout << "| (___         | |      | |   | |    | |  \\ \\    | |___      |  \\ | |       | |     " << endl;
+    cout << " \\___ \\        | |      | |   | |    | |   | |   |  ___|     |   \\| |       | |     " << endl;
+    cout << "  ____| |      | |      | |___| |    | |__/ /    | |____     | |\\   |       | |     " << endl;
+    cout << " |_____/       |_|       \\_____/     |_____/     |______|    |_| \\__|       |_|     " << endl;
+    cout << "                                                                                     " << endl;
+    cout << "  __    __         __           ____       _    _       ____       _    _      ______    " << endl;
+    cout << " |  \\  /  |      /    \\        / __ \\     | |  | |     |_  _|     | \\  | |    |  ____|   " << endl;
+    cout << " |   \\/   |     /  /\\  \\      / /  \\_|    | |__| |       ||       |  \\ | |    | |___     " << endl;
+    cout << " | |\\  /| |    /  /__\\  \\    | |          |  __  |       ||       |   \\| |    |  ___|    " << endl;
+    cout << " | | \\/ | |   /  /    \\  \\   | \\____      | |  | |     __||__     | |\\   |    | |____    " << endl;
+    cout << " |_|    |_|   \\_/      \\_/    \\_____|     |_|  |_|    |_____|     |_| \\__|    |______|   " << endl;
+    cout << "                                                                                       " << endl << endl;
+
     cout << "\n version: " << VERSION;
     cout << "\n by m.filipiak\n\n";
     if (argc == 1) {
@@ -262,8 +276,8 @@ int main(int argc, char* argv[])
             //wyczyszczenie projektow ucznia
             system("rm -rf ~/student_projects");
 
-            //czyszczenie historii systemu
-            system("rm -f ~/.bash_history");
+            //czyszczenie historii konsoli i ustawien aplikacji 
+            system("rm -f ~/.bash_history && rm -rf ~/.config");
 
 	        //czyszczenie ustawien usera
 	        system("rm -r ~/.studentmachine");
@@ -469,7 +483,7 @@ int main(int argc, char* argv[])
                     coutGreen("\n Iam saving your work on github - Bye! :-) \n");
                     
                     string s;
-                    //wyczyszczenie kluczy
+                    //wyczyszczenie klucza od githuba
                     s = "rm ~/.ssh/"+githublogin;
                     system(s.c_str());
                     s = "rm ~/.ssh/"+githublogin+".pub";
@@ -477,6 +491,9 @@ int main(int argc, char* argv[])
 		
 		            //wyczyszczenie projektow ucznia
 	                system("rm -rf ~/student_projects");
+	                
+	                //czyszczenie historii konsoli i ustawien aplikacji 
+                    system("rm -f ~/.bash_history && rm -rf ~/.config");
 
                     //wylaczenie maszyny
                     system("sudo poweroff");
@@ -487,11 +504,17 @@ int main(int argc, char* argv[])
 		            //wyczyszczenie projektow ucznia
             	    system("rm -rf ~/student_projects");
 
+                    //czyszczenie historii konsoli i ustawien aplikacji 
+                    system("rm -f ~/.bash_history && rm -rf ~/.config");
+
                     //wylaczenie maszyny
                     system("sudo poweroff");
                 }
             }
             else {
+                //czyszczenie historii konsoli i ustawien aplikacji 
+                system("rm -f ~/.bash_history && rm -rf ~/.config");
+                    
                 coutGreen("Bye! But this time with no github. I am sure that you saved own work.\n");
             }
         }
