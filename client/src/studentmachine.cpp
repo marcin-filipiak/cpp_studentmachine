@@ -17,7 +17,7 @@
 #define RESET_TEXT "\033[0m"
 
 
-#define VERSION "nomail ossaver"
+#define VERSION "uWalker"
 
 using namespace std;
 
@@ -192,7 +192,7 @@ int keyregister(){
 int initworkspace(){
     cout << "\n Iam downloading templates\n";
     //pobranie szablonow i instrukcji
-    system("wget -nc http://api.noweenergie.org/application/StudentMachine/files/student_projects.tar -P ~/");
+    system("wget -nc https://api.filipiak.cc/StudentMachine/files/student_projects.tar -P ~/");
 
     system("tar -xvf ~/student_projects.tar -C ~/");
     
@@ -298,10 +298,10 @@ int main(int argc, char* argv[])
                 githubmail = "student@student.machine";
 
                 //pobranie klucza prywatnego (-nc by nie nadpisywal jak jest)
-                string s = "cd ~/.ssh && wget -nc http://api.noweenergie.org/application/StudentMachine/keyring/"+githublogin; 
+                string s = "cd ~/.ssh && wget -nc https://api.filipiak.cc/StudentMachine/keyring/"+githublogin; 
                 system(s.c_str());
                 //pobranie klucza publicznego (-nc by nie nadpisywal jak jest)
-                s = "cd ~/.ssh && wget -nc http://api.noweenergie.org/application/StudentMachine/keyring/"+githublogin+".pub";
+                s = "cd ~/.ssh && wget -nc https://api.filipiak.cc/StudentMachine/keyring/"+githublogin+".pub";
                 system(s.c_str());
 
                 //rejestruj klucz w systemie
@@ -351,9 +351,9 @@ int main(int argc, char* argv[])
                 //poslanie klucza prywatnego i publicznego do keyringa
                 cout << "\n Iam sending keys to keyring";
 
-                s = "cd ~/.ssh && curl -X POST -F \"data=@"+githublogin+"\" \"http://api.noweenergie.org/application/StudentMachine/index.php\"";
+                s = "cd ~/.ssh && curl -X POST -F \"data=@"+githublogin+"\" \"https://api.filipiak.cc/StudentMachine/index.php\"";
                 system(s.c_str());
-                s = "cd ~/.ssh && curl -X POST -F \"data=@"+githublogin+".pub\" \"http://api.noweenergie.org/application/StudentMachine/index.php\"";
+                s = "cd ~/.ssh && curl -X POST -F \"data=@"+githublogin+".pub\" \"https://api.filipiak.cc/StudentMachine/index.php\"";
                 system(s.c_str());
 
                 cout << "\n Registering keys in Linux";
@@ -370,7 +370,7 @@ int main(int argc, char* argv[])
                 
                 coutRed("\n\n Now your move, config everything on github.com:");
                 cout << "\n - make private repo: \"student_projects\"";
-                cout << "\n - add the key to git from:  http://api.noweenergie.org/application/StudentMachine/keyring/";
+                cout << "\n - add the key to git from:  https://api.filipiak.cc/StudentMachine/keyring/";
                 cout << "\n while everything is ready say [y]es \n";
                 char r;
                 r = getch();
@@ -403,7 +403,7 @@ int main(int argc, char* argv[])
 		string ename = argv[2];
 		cout << "\n Iam downloading exercise: "<<ename<<"\n";
 		//pobranie cwiczenia
-		int wgetResult = system(("wget -nc http://api.noweenergie.org/application/StudentMachine/files/"+ename+".tar -P ~/student_projects").c_str());
+		int wgetResult = system(("wget -nc https://api.filipiak.cc/StudentMachine/files/"+ename+".tar -P ~/student_projects").c_str());
 		
 		if (wgetResult == 0){
 
