@@ -155,6 +155,7 @@ int interactiveMenu(const Context& context) {
 
 void printVersion() {
     std::cout << kAppName << " " << kVersion << " (" << kCodename << ")\n";
+    std::cout << "Author: " << kAuthor << "\n";
 }
 
 void printHelp(bool withBanner) {
@@ -164,7 +165,8 @@ void printHelp(bool withBanner) {
 
     std::cout << "  " << term::bold("Usage") << "\n\n";
     std::cout << "    studentmachine <command> [options]\n";
-    std::cout << "    studentmachine                     interactive menu\n\n";
+    std::cout << "    studentmachine                     interactive menu\n";
+    std::cout << "    " << term::dim("Author: " + std::string(kAuthor)) << "\n\n";
 
     ui::section("Commands");
     commandLine("install", "Install the required system tools");
